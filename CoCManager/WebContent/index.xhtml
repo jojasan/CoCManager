@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:utils="http://java.sun.com/jsf/composite/utils">
+<h:head>
+<title>Clash of Clans Manager</title>
+<h:outputStylesheet library="css" name="index.css"/>
+<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css"/>
+<h:outputScript library="jquery" name="jquery-1.11.0.min.js"/>
+<h:outputScript library="bootstrap/js" name="bootstrap.min.js"/>
+<h:outputScript library="scripts" name="index.js"/>
+</h:head>
+<h:body styleClass="body">
+<div class="header-title">
+	<h1>Clash of Clans Manager</h1>
+	<p class="lead">Welcome to Clash of Clans Manager Chief! We will help you be the best Clasher of them all!</p>
+</div>
+<h:graphicImage library="images" name="Troop-Wizard.png" styleClass="header-image"/>
+<div class="menu-bar" id="mainMenuBarId">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#clanId" data-toggle="tab">Clans</a></li>
+		<li><a href="#warsId" data-toggle="tab">Wars</a></li>
+		<li><a href="#armyOptimizerId" data-toggle="tab">Army Optimizer</a></li>
+	</ul>
+</div>
+<div class="tab-content">
+	<div class="tab-pane active tab-container" id="clanId">
+		<h:form>
+		<div class="form-inline">
+			<div class="col-sm-6">
+				<div class="btn-group">
+					<h:commandButton value="+ Add Clan" styleClass="btn btn-success btn-clan btn-sm"/>
+					<h:commandButton value="~ Edit Clan" styleClass="btn btn-warning btn-clan btn-sm"/>
+					<h:commandButton value="- Delete Clan" styleClass="btn btn-danger btn-clan btn-sm"/>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="col-sm-8 menu-select-container">
+   					<label class="control-label">Period:</label>
+					<h:selectOneMenu value="#{user.selectedPeriodId}" styleClass="form-control input-sm period-select">
+						<f:selectItems value="#{main.periods}"/>
+						<f:ajax render="clanTable" onevent="checkClanUpdateResult"/>
+					</h:selectOneMenu>
+				</div>
+				<div class="col-sm-4 menu-select-container">
+   					<label class="control-label">Clan:</label>
+					<h:selectOneMenu value="#{user.selectedClan}" styleClass="form-control input-sm clan-select">
+						<f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+						<f:selectItems value="#{user.clanChoices}"/>
+						<f:ajax render="clanTable"/>
+					</h:selectOneMenu>
+					<br/>
+				</div>
+			</div>
+		</div>
+		<h:dataTable id="clanTable" styleClass="table table-hover table-condensed clanTable"
+					var="member"
+					value="#{user.clanMembers}"
+					binding="#{table}">
+			<h:column>
+				<f:facet name="header">#</f:facet>
+				#{table.rowIndex + 1}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Member</f:facet>
+				#{member["name"]}
+				<f:facet name="footer">
+					<h:inputText value="+ Add Member" pt:type="button" pt:data-toggle="modal" pt:data-target="#createMemberModalContainer" styleClass="btn btn-primary btn-sm"/>
+				</f:facet>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Rank</f:facet>
+				#{member["rank"]}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Trophies <span class="glyphicon glyphicon-chevron-down"></span></f:facet>
+				#{member["trophies"]}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:commandButton value="&lt;" styleClass="btn btn-link btn-sm period-sel-btn"/>
+					Donations 
+					<span class="glyphicon glyphicon-chevron-down"></span>
+					<h:commandButton value="&gt;" styleClass="btn btn-link btn-sm disabled period-sel-btn"/>
+				</f:facet>
+				#{member["donations"]}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Level <span class="glyphicon glyphicon-chevron-down"></span></f:facet>
+				#{member["level"]}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Joined <span class="glyphicon glyphicon-chevron-down"></span></f:facet>
+				<h:outputText value='#{member["joined"]}'>
+					<f:convertDateTime pattern="dd-MMM-yyyy"/>
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton value="Edit" action="#{manageMember.load(table.rowIndex, user.clan)}" styleClass="btn btn-info btn-xs action-btn"
+					pt:data-toggle="modal" pt:data-target="#editMemberModalContainer">
+					<f:ajax render=":editMemberModal:editMemberModalForm"/>
+				</h:commandButton>
+				<h:commandButton value="Delete" 
+					styleClass="btn btn-danger btn-xs action-btn" 
+					action="#{manageMember.delete(table.rowIndex, user.clan)}">
+					<f:ajax render="@form"/>
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+		</h:form>
+	</div>
+	<div class="tab-pane tab-container" id="warsId">This is sparta!</div>
+	<div class="tab-pane tab-container" id="armyOptimizerId">This is the optimizer</div>
+</div>
+<utils:memberModal id="createMemberModal" value="#{manageMember}"
+	memberRanks="#{main.ranks}"
+	modalTitle="Create a new Member"
+	action="#{manageMember.create(user.clan)}"/>
+<utils:memberModal id="editMemberModal" value="#{manageMember}"
+	memberRanks="#{main.ranks}"
+	modalTitle="Edit Member"
+	action="#{manageMember.edit}"/>
+</h:body></html>

@@ -1,0 +1,54 @@
+.clanTable {
+	padding-bottom: 2px;
+	margin-top: 15px;
+}
+.action-btn {
+	margin-right: 2px;
+}
+.tab-container {
+	border-color: #DDDDDD;
+	border-width: 0 1px 1px;
+	border-radius: 0 0 6px 6px;
+	border-style: solid;
+	padding: 18px;
+}
+.body {
+	margin-left: 6%;
+	margin-right: 6%;
+}
+.menu-bar {
+	margin-top: 17px;
+}
+.header-image {
+	display: inline-block;
+	float: right;
+}
+.header-title {
+	display: inline-block;
+}
+.btn-clan {
+	margin-right: 2px;
+}
+select.clan-select {
+	width: auto;
+}
+select.period-select {
+	width: auto;
+}
+.period-sel-btn {
+	padding: 0px 4px !important;
+}
+.rank-radio {
+	margin-top: 9px !important;
+}
+.rank-radio-text {
+	font-size: 11px;
+	font-weight: 500;
+}
+.menu-select-container {
+	text-align: right;
+}
+.menu-select-container label {
+	margin-right: 2px;
+	font-size: 12px;
+}
