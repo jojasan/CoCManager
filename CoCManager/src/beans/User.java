@@ -74,4 +74,14 @@ public class User extends BaseBean {
 		this.selectedPeriodId = selectedPeriodId;
 		selectedPeriod = Period.getPeriodFromId(selectedPeriodId, data.getPeriods());
 	}
+	
+	public String nextPeriod() {
+		selectedPeriodId++;
+		return null;
+	}
+	
+	public String previousPeriod() {
+		selectedPeriodId--;
+		return null;
+	}
 }

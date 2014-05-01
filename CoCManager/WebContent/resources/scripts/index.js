@@ -5,23 +5,23 @@ $('#mainMenuBarId a').click(function (e) {
 
 //$('#createMemberModal').modal({});
 
-function checkClanUpdateResult(data) {
+function checkPeriodChange(data) {
 	if (data.status == "success") {
 		togglePeriodSelectButtons();
 	}
 }
 
 function togglePeriodSelectButtons() {
-	var selectedOp = $("#clanId div.period-select option:selected").val();
-	var lastOp = $("#clanId div.period-select option:last").val();
+	var selectedOp = $("#clanId select.period-select option:selected").val();
+	var lastOp = $("#clanId select.period-select option:last").val();
 	if(selectedOp == 0) {
-		$("#clanId div.period-select input:first").addClass("disabled");
-		$("#clanId div.period-select input:last").removeClass("disabled");
+		$("#clanId table th input:first").addClass("disabled");
+		$("#clanId table th input:last").removeClass("disabled");
 	} else if(selectedOp == lastOp) {
-		$("#clanId div.period-select input:last").addClass("disabled");
-		$("#clanId div.period-select input:first").removeClass("disabled");
+		$("#clanId table th input:last").addClass("disabled");
+		$("#clanId table th input:first").removeClass("disabled");
 	} else {
-		$("#clanId div.period-select input").removeClass("disabled");
+		$("#clanId table th input").removeClass("disabled");
 	}
 	console.log("Buttons toggled");
 };
