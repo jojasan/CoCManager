@@ -1,6 +1,6 @@
 .clanTable {
-	padding-bottom: 2px;
-	margin-top: 15px;
+	margin-top: 25px;
+	margin-bottom: 0px !important;
 }
 .action-btn {
 	margin-right: 2px;
@@ -17,11 +17,11 @@
 	margin-right: 6%;
 }
 .menu-bar {
-	margin-top: 17px;
 }
 .header-image {
 	display: inline-block;
 	float: right;
+	height: 130px;
 }
 .header-title {
 	display: inline-block;
@@ -51,4 +51,10 @@ select.period-select {
 .menu-select-container label {
 	margin-right: 2px;
 	font-size: 12px;
+}
+.donations-col {
+	width: 150px;
+}
+.av-donations-col {
+	width: 142px;
 }

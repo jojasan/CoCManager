@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:utils="http://java.sun.com/jsf/composite/utils">
+<h:head>
+<title>Clash of Clans Manager Login</title>
+<h:outputStylesheet library="css" name="login.css"/>
+<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css"/>
+<h:outputScript library="jquery" name="jquery-1.11.0.min.js"/>
+<h:outputScript library="bootstrap/js" name="bootstrap.min.js"/>
+<h:outputScript library="scripts" name="facebook.js"/>
+</h:head>
+<h:body>
+<h:form>
+<header class="navbar navbar-default login-nav" role="banner">
+
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			  <span class="sr-only">Toggle navigation</span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</button>
+		    <a class="navbar-brand" href="#">Home</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+			  <li><a href="http://www.supercell.net/games/view/clash-of-clans">Clash of Clans</a></li>
+			  <li><a href="http://clashofclans.wikia.com/wiki/Clash_of_Clans_Wiki">Wiki</a></li>
+			  <li><a href="#">Colaborate</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><div class="navbar-form"><div class="form-group">
+					<h:commandButton styleClass="btn btn-default" value="Login"/>
+				</div></div></li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+				    <li><a href="#">Spanish</a></li>
+				    <li><a href="#">English</a></li>
+				    <li><a href="#">French</a></li>
+				  </ul>
+				</li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="header-title test">
+	<div class="container">
+		<div>
+			<h:graphicImage library="images" name="CoC.png" styleClass="coc-image"/>
+			<h1 class="manager-title">Manager</h1>
+			<h:graphicImage library="images" name="Hero-BK.png" styleClass="coc-image-right"/>
+		</div>
+		<p class="lead title-intro">The best Clan management tool out there Chief!</p>
+	</div>
+</div>
+<div class="container">
+	<h1 class="page-header">Manage your clan to success!</h1>
+	<p class="lead">Are you tired of using spreadsheets for tracking clan members? Would you like Co-Leaders and Elders to be more engaged on Clan administration duties? Don't worry, we are here to help!</p>
+	<h3>Member Management</h3>
+	<p>Add, Edit and Delete clan members. Set donations per period, member joined dates, trophies, ranks and more! </p>
+	<h:graphicImage library="images" name="MemberMgmt.png"/>
+	<h3>War Analysis</h3>
+	<p>Add war results, including stars won and lost by each member.</p>
+	<h3>Army Optimizer</h3>
+	<p>Optimize time to muster your army! Just tell us what units you need, and we'll tell you how to train them optimally!</p>
+	<div>
+		<h:commandButton styleClass="btn btn-success btn-xs email-login-btn" value="Log in with Email"/>
+		<div class="fb-login-button fb-login-btn" data-max-rows="1" data-size="large" 
+			onlogin="checkLoginState()" data-scope="public_profile,email">
+			Log in with Facebook
+		</div>
+	</div>
+	
+	<div id="status">
+	</div>
+</div>
+</h:form>
+</h:body>
+</html>

@@ -19,6 +19,7 @@ public class User extends BaseBean {
 	private String selectedClan;
 	private Period selectedPeriod;
 	private int selectedPeriodId = data.getPeriods().size() - 1;
+	private int avWindowSize = 4;
 	
 	public String getSelectedClan() {
 		return selectedClan;
@@ -57,6 +58,7 @@ public class User extends BaseBean {
 			item.put("joined", m.getJoinedDate());
 			item.put("donations", m.getDonations(Period.getPeriodFromId(selectedPeriodId, data.getPeriods())));
 			item.put("id", m.getId());
+			item.put("avDonations", m.getAverageDonations(data.getPeriods(), avWindowSize));
 			members.add(item);
 		}
 		return members;

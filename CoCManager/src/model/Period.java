@@ -41,6 +41,15 @@ public class Period {
 	public static Period getTodaysPeriod(List<Period> periods) {
 		return getPeriodForAnyDate(new Date(), periods);
 	}
+	
+	public static Period getPreviousPeriod(Period p, List<Period> periods) {
+		for (int i = 0 ; i < periods.size(); i++ ) {
+			if(p.equals(periods.get(i)) && i != 0) {
+				return periods.get(i-1);
+			}
+		}
+		return null;
+	}
 
 	public Date getStartDate() {
 		return startDate;

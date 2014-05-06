@@ -120,6 +120,19 @@ public class Member implements Comparable<Member>{
 	public void setClan(Clan clan) {
 		this.clan = clan;
 	}
+	
+	public float getAverageDonations(List<Period> periods, int windowSize) {
+		int donationSum = 0;
+		Period currentP = Period.getTodaysPeriod(periods);
+		donationSum += getDonations(currentP);
+		Period previousP = currentP;
+		for(int i = 1 ; i < windowSize ; i++) {
+			previousP = Period.getPreviousPeriod(previousP, periods);
+			donationSum += getDonations(previousP);
+		}
+		
+		return donationSum/windowSize;
+	}
 
 	@Override
 	public int compareTo(Member o) {
