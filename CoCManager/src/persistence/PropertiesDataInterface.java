@@ -27,18 +27,7 @@ public class PropertiesDataInterface implements DataInterface {
 		Clan c2 = createClan(10);
 		clans.put(c1.getName(), c1);
 		clans.put(c2.getName(), c2);
-	}
-
-	@Override
-	public void saveClan(Clan clan) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void saveMember(Member member) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Clans loaded (2)");
 	}
 
 	private Clan createClan(int selector) {
@@ -118,7 +107,7 @@ public class PropertiesDataInterface implements DataInterface {
 		Date today = new Date();
 		originRange.setEndDate(endDate);
 		periods.add(originRange);
-		for(int i = 0 ; endDate.before(today) ; i++) { //TODO improve to only generate some past, and up to most current period
+		for(int i = 0 ; endDate.before(today) ; i++) {
 			cal.add(Calendar.DATE, Period.PERIOD_DAYS);
 			Period range = new Period();
 			range.setId(i + 1);
@@ -127,10 +116,29 @@ public class PropertiesDataInterface implements DataInterface {
 			range.setEndDate(endDate);
 			periods.add(range);
 		}
+		System.out.println("Periods loaded");
 	}
 
 	@Override
 	public List<Period> getPeriods() {
 		return periods;
+	}
+
+	@Override
+	public void createMember(Clan c, Member m) {
+		// TODO Auto-generated method stub
+		System.out.println("Member created: " + m.getName());
+	}
+
+	@Override
+	public void editMember(Member m) {
+		// TODO Auto-generated method stub
+		System.out.println("Member edited: " + m.getName());
+	}
+
+	@Override
+	public void deleteMember(Member m) {
+		// TODO Auto-generated method stub
+		System.out.println("Member deleted: " + m.getName());
 	}
 }

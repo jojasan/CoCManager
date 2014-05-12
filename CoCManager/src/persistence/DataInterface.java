@@ -12,6 +12,7 @@ public interface DataInterface {
 	public void loadPeriods();
 	public Map<String, Clan> getClans();
 	public List<Period> getPeriods();
-	public void saveClan(Clan clan);
-	public void saveMember(Member member);
+	public void createMember(Clan c, Member m);
+	public void editMember(Member m);
+	public void deleteMember(Member m);
 }

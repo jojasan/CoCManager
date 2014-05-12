@@ -18,8 +18,10 @@ public class ManageMember extends BaseBean implements IMember {
 	private Integer trophies;
 	private Integer level;
 	private Date joinedDate;
+	private Integer donations;
 	private Rank rank;
 	private Member member;
+	private Integer periodId;
 	
 	public String getSelectedRank() {
 		return selectedRank;
@@ -73,6 +75,7 @@ public class ManageMember extends BaseBean implements IMember {
 			m.setTrophies(trophies);
 			m.setRank(rank);
 			clan.addMember(m);
+			data.createMember(clan, m);
 		}
 		resetForm();
 		return null;
@@ -80,20 +83,23 @@ public class ManageMember extends BaseBean implements IMember {
 	
 	public String delete(int index, Clan clan) {
 		if(clan != null) {
+			data.deleteMember(clan.getMembers().get(index));
 			clan.removeMember(index);
 		}
 		return null;
 	}
 
-	public String load(int index, Clan clan) {
+	public String load(int index, Clan clan, int periodId) {
 		member = clan.getMembers().get(index);
 		if(member != null) {
+			this.periodId = periodId;
 			name = member.getName();
 			trophies = member.getTrophies();
 			level = member.getLevel();
-			joinedDate = member.getJoinedDate(); //TODO there is a bug loading the date
+			joinedDate = member.getJoinedDate();
 			rank = member.getRank();
 			selectedRank = rank.name();
+			donations = member.getDonations(Period.getPeriodFromId(periodId, data.getPeriods()));
 		}
 		return null;
 	}
@@ -105,6 +111,8 @@ public class ManageMember extends BaseBean implements IMember {
 			member.setJoinedDate(joinedDate);
 			member.setLevel(level);
 			member.setRank(rank);
+			member.setDonations(donations, Period.getPeriodFromId(periodId, data.getPeriods()));
+			data.editMember(member);
 		}
 		resetForm();
 		return null;
@@ -120,20 +128,23 @@ public class ManageMember extends BaseBean implements IMember {
 		member = null;
 	}
 	
+	public Integer getDonations() {
+		return donations;
+	}
+
+	@Override
+	public void setDonations(Integer donations) {
+		this.donations = donations;
+	}
+	
 	@Override
 	public Integer getDonations(Period p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public void setDonations(Integer donations, Date date) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setDonations(int donations) {
 		// TODO Auto-generated method stub
 		
 	}

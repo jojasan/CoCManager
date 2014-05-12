@@ -110,7 +110,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Actions</f:facet>
-				<h:commandButton value="Edit" action="#{manageMember.load(table.rowIndex, user.clan)}" styleClass="btn btn-info btn-xs action-btn"
+				<h:commandButton value="Edit" action="#{manageMember.load(table.rowIndex, user.clan, user.selectedPeriodId)}" styleClass="btn btn-info btn-xs action-btn"
 					pt:data-toggle="modal" pt:data-target="#editMemberModalContainer">
 					<f:ajax render=":editMemberModal:editMemberModalForm"/>
 				</h:commandButton>
@@ -133,5 +133,6 @@
 <utils:memberModal id="editMemberModal" value="#{manageMember}"
 	memberRanks="#{main.ranks}"
 	modalTitle="Edit Member"
-	action="#{manageMember.edit}"/>
+	action="#{manageMember.edit()}"
+	showDonations="true"/>
 </h:body></html>

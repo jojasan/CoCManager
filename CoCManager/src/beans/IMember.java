@@ -30,7 +30,7 @@ public interface IMember {
 	
 	public void setDonations(Integer donations, Date date);
 	
-	public void setDonations(int donations);
+	public void setDonations(Integer donations);
 	
 	public Clan getClan();
 

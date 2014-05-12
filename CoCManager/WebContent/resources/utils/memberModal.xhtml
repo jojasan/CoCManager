@@ -50,6 +50,14 @@
 					<h:inputText value="#{cc.attrs.value.level}" styleClass="form-control" pt:placeholder="60" pt:type="number"/>
 				</div>
 			</div>
+			<ui:fragment rendered="#{cc.attrs.showDonations}">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Donations</label>
+					<div class="col-sm-3">
+						<h:inputText value="#{cc.attrs.value.donations}" styleClass="form-control" pt:type="number"/>
+					</div>
+				</div>
+			</ui:fragment>
 			<div class="form-group">
 			    <label class="col-sm-2 control-label">Rank</label>
 			    <div class="col-sm-10">
