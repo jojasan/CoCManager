@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:co="http://java.sun.com/jsf/composite">
+<h:head>
+<title>(For validation only)</title>
+</h:head>
+<h:body>
+<co:interface>
+	<co:attribute name="value" type="beans.IMember"/>
+	<co:attribute name="modalTitle" required="true"/>
+<!-- 	<co:attribute name="action" required="true" method-signature="String action()"/> -->
+</co:interface>
+<co:implementation>
+	<div class="modal fade" id="#{cc.id}Container" tabindex="-1" role="dialog" aria-labelledby="#{cc.id}Label" aria-hidden="true">
+	  <div class="modal-dialog">
+		<h:form styleClass="form-horizontal" role="form" id="#{cc.id}Form">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="#{cc.id}Label">#{cc.attrs.modalTitle}</h4>
+	      </div>
+	      <div class="modal-body">
+			<div class="form-group">
+			    <label class="col-sm-3 control-label">Name</label>
+			    <div class="col-sm-8">
+			    	<h:inputText value="#{cc.attrs.value.name}" styleClass="form-control" pt:placeholder="ClanX"/>
+			    </div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Description</label>
+				<div class="col-sm-8">
+					<h:inputTextarea rows="3" value="#{cc.attrs.value.description}" styleClass="form-control" pt:placeholder="The best clan evah!"/>
+				</div>
+			</div>
+			<t:selectManyCheckbox id="restrictionsCheckboxId" value="#{main.selectedRestrictions}" layout="spread">
+			    <f:selectItems value="#{main.restrictions}" var="restriction" itemValue="#{restriction}" itemLabel=""/>
+			</t:selectManyCheckbox>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Min. Trophies</label>
+				<div class="col-sm-3">
+					<h:inputText value="#{cc.attrs.value.minTrophies}" styleClass="form-control" pt:placeholder="1300" pt:type="number"/>
+				</div>
+				<div class="col-sm-2">				
+					<t:checkbox index="0" for="restrictionsCheckboxId"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Min. Level</label>
+				<div class="col-sm-3">
+					<h:inputText value="#{cc.attrs.value.minLevel}" styleClass="form-control" pt:placeholder="60" pt:type="number"/>
+				</div>
+				<div class="col-sm-2">				
+					<t:checkbox index="1" for="restrictionsCheckboxId"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Min. Donations</label>
+				<div class="col-sm-3">
+					<h:inputText value="#{cc.attrs.value.minDonations}" styleClass="form-control" pt:placeholder="500" pt:type="number"/>
+				</div>
+				<div class="col-sm-2">				
+					<t:checkbox index="2" for="restrictionsCheckboxId"/>
+				</div>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <h:commandButton value="Save Clan" styleClass="btn btn-primary" action="#{cc.attrs.action}">
+	        </h:commandButton>
+	      </div>
+	    </div>
+	    </h:form>
+	  </div>
+	</div>
+</co:implementation>
+</h:body></html>
