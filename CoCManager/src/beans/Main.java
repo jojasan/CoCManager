@@ -10,17 +10,18 @@ import javax.faces.bean.ManagedBean;
 
 import model.Period;
 import model.Rank;
-import persistence.DataInterface;
-import persistence.PropertiesDataInterface;
+import persistence.Data;
+import persistence.FileData;
 
 @ManagedBean(eager=true)
 @ApplicationScoped
 public class Main {
-	private DataInterface data;
+	private Data data;
 	
 	public Main() {
 		System.out.println("Starting up CoC...");
-		data = PropertiesDataInterface.getInstance();
+		System.out.println("Using FileData instance");
+		data = FileData.getInstance();
 		data.loadPeriods();
 		data.loadClans();
 	}
@@ -38,5 +39,22 @@ public class Main {
 	
 	public Rank[] getRanks() {
 		return Rank.values();
+	}
+	
+	//TODO build real implementation for restrictions. This is dummy results
+	public String[] getRestrictions() {
+		String[] result = new String[3];
+		result[0] = "MinTrophies";
+		result[1] = "MinLevel";
+		result[2] = "MinDonations";
+		return result;
+	}
+	
+	public String[] getSelectedRestrictions() {
+		return null;
+	}
+	
+	public void setSelectedRestrictions(String[] selected) {
+		
 	}
 }

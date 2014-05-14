@@ -146,6 +146,17 @@ public class Member implements Comparable<Member>{
 				return o1.trophies - o2.trophies;
 			}
 		};
+		public static Comparator<Member> LEVEL = new Comparator<Member>() {
+			@Override
+			public int compare(Member o1, Member o2) {
+				return o1.level - o2.level;
+			}
+		};
 		//TODO add more comparator options: date, donations, etc...
+	}
+	
+	@Override
+	public String toString() {
+		return name + "_id:" + id;
 	}
 }

@@ -70,27 +70,24 @@ public class ManageMember extends BaseBean implements IMember {
 			m.setName(name);
 			m.setLevel(level);
 			m.setDonations(0, Period.getTodaysPeriod(data.getPeriods()));
-			System.out.println("Date for new member is: " + joinedDate);
 			m.setJoinedDate(joinedDate);
 			m.setTrophies(trophies);
 			m.setRank(rank);
-			clan.addMember(m);
 			data.createMember(clan, m);
 		}
 		resetForm();
 		return null;
 	}
 	
-	public String delete(int index, Clan clan) {
+	public String delete(int id, Clan clan) {
 		if(clan != null) {
-			data.deleteMember(clan.getMembers().get(index));
-			clan.removeMember(index);
+			data.deleteMember(clan.getMember(id));
 		}
 		return null;
 	}
 
-	public String load(int index, Clan clan, int periodId) {
-		member = clan.getMembers().get(index);
+	public String load(int id, Clan clan, int periodId) {
+		member = clan.getMember(id);
 		if(member != null) {
 			this.periodId = periodId;
 			name = member.getName();
@@ -106,13 +103,7 @@ public class ManageMember extends BaseBean implements IMember {
 	
 	public String edit() {
 		if(member != null) {
-			member.setName(name);
-			member.setTrophies(trophies);
-			member.setJoinedDate(joinedDate);
-			member.setLevel(level);
-			member.setRank(rank);
-			member.setDonations(donations, Period.getPeriodFromId(periodId, data.getPeriods()));
-			data.editMember(member);
+			data.editMember(member, name, trophies, joinedDate, level, rank, donations, periodId);
 		}
 		resetForm();
 		return null;

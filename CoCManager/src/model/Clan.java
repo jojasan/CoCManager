@@ -1,8 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Clan {
@@ -10,7 +8,6 @@ public class Clan {
 	private String name;
 	private List<Member> members;
 	private List<War> wars;
-	private Comparator<Member> sortCriteria;
 	
 	public Clan(String name) {
 		this.name = name;
@@ -31,22 +28,26 @@ public class Clan {
 	}
 	
 	public List<Member> getMembers() {
-		if(sortCriteria == null) {
-			Collections.sort(members);
-			Collections.reverse(members); //defaults to by trophies
-		} else {
-			Collections.sort(members, Collections.reverseOrder(sortCriteria));			
-		}
 		return members;
+	}
+	
+	public Member getMember(int id) {
+		for (Member m : members) {
+			if(m.getId() == id) {
+				return m;
+			}
+		}
+		return null;
 	}
 	
 	public void addMember(Member member) {
 		members.add(member);
+		member.setClan(this);
 		//TODO: persist member
 	}
 	
 	public void removeMember(int id) {
-		members.remove(id);
+		members.remove(getMember(id));
 		//TODO persist remove
 	}
 	
@@ -56,5 +57,10 @@ public class Clan {
 	
 	public void setSortCriteria() {
 		
+	}
+	
+	@Override
+	public String toString() {
+		return name + "_id:" + id;
 	}
 }

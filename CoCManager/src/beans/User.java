@@ -1,10 +1,12 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -16,21 +18,22 @@ import model.Period;
 @ManagedBean
 @SessionScoped
 public class User extends BaseBean {
-	private String selectedClan;
+	private Integer selectedClan;
 	private Period selectedPeriod;
 	private int selectedPeriodId = data.getPeriods().size() - 1;
 	private int avWindowSize = 4;
+	private Comparator<Member> sortCriteria = Member.MemberComparators.TROPHIES; //default order is by trophies
 	
-	public String getSelectedClan() {
+	public Integer getSelectedClan() {
 		return selectedClan;
 	}
 
-	public void setSelectedClan(String selectedClan) {
+	public void setSelectedClan(Integer selectedClan) {
 		this.selectedClan = selectedClan;
 	}
 	
-	public Set<String> getClanChoices() {
-		return data.getClans().keySet();
+	public Collection<Clan> getClanChoices() {
+		return data.getClans().values();
 	}
 	
 	public Clan getClan() {
@@ -47,9 +50,12 @@ public class User extends BaseBean {
 			return null;
 		}
 		
+		ArrayList<Member> clanCopy = new ArrayList<Member>(clan.getMembers());
+		Collections.sort(clanCopy, Collections.reverseOrder(sortCriteria));
+		
 		//build result map according to selectedPeriod
 		List<Map<String, Object>> members = new ArrayList<Map<String,Object>>();
-		for (Member m : clan.getMembers()) {
+		for (Member m : clanCopy) {
 			Map<String, Object> item = new LinkedHashMap<String, Object>();
 			item.put("name", m.getName());
 			item.put("trophies", m.getTrophies());

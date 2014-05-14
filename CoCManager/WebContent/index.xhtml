@@ -34,7 +34,8 @@
 		<div class="form-inline">
 			<div class="col-sm-6">
 				<div class="btn-group">
-					<h:commandButton value="+ Add Clan" styleClass="btn btn-success btn-clan btn-sm"/>
+					<h:inputText value="+ Add Clan" pt:type="button" pt:data-toggle="modal" 
+						pt:data-target="#createClanModalContainer" styleClass="btn btn-success btn-clan btn-sm"/>					
 					<h:commandButton value="~ Edit Clan" styleClass="btn btn-warning btn-clan btn-sm"/>
 					<h:commandButton value="- Delete Clan" styleClass="btn btn-danger btn-clan btn-sm"/>
 				</div>
@@ -51,7 +52,7 @@
    					<label class="control-label">Clan:</label>
 					<h:selectOneMenu value="#{user.selectedClan}" styleClass="form-control input-sm clan-select">
 						<f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
-						<f:selectItems value="#{user.clanChoices}"/>
+						<f:selectItems value="#{user.clanChoices}" var="c" itemValue="#{c.id}" itemLabel="#{c.name}"/>
 						<f:ajax render="clanTable"/>
 					</h:selectOneMenu>
 					<br/>
@@ -110,13 +111,13 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Actions</f:facet>
-				<h:commandButton value="Edit" action="#{manageMember.load(table.rowIndex, user.clan, user.selectedPeriodId)}" styleClass="btn btn-info btn-xs action-btn"
+				<h:commandButton value="Edit" action="#{manageMember.load(member['id'], user.clan, user.selectedPeriodId)}" styleClass="btn btn-info btn-xs action-btn"
 					pt:data-toggle="modal" pt:data-target="#editMemberModalContainer">
 					<f:ajax render=":editMemberModal:editMemberModalForm"/>
 				</h:commandButton>
 				<h:commandButton value="Delete" 
 					styleClass="btn btn-danger btn-xs action-btn" 
-					action="#{manageMember.delete(table.rowIndex, user.clan)}">
+					action="#{manageMember.delete(member['id'], user.clan)}">
 					<f:ajax render="@form"/>
 				</h:commandButton>
 			</h:column>
@@ -135,4 +136,6 @@
 	modalTitle="Edit Member"
 	action="#{manageMember.edit()}"
 	showDonations="true"/>
+<utils:clanModal id="createClanModal"
+	modalTitle="Create a new Clan"/>
 </h:body></html>

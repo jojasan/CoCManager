@@ -2,6 +2,7 @@ package model;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Period {
@@ -15,14 +16,25 @@ public class Period {
 	public static Date getEndDateForStart(Date date) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		c.add(Calendar.DATE, PERIOD_DAYS-1);
+		c.add(Calendar.DATE, PERIOD_DAYS-1); //add period days
+		c.add(Calendar.HOUR_OF_DAY, 23);
+		c.add(Calendar.MINUTE, 59);
+		c.add(Calendar.SECOND, 59);
 		return c.getTime();
 	}
 	
 	public static Period getPeriodForAnyDate(Date date, List<Period> periods) {
+		//strip out dates time
+		Calendar cal = GregorianCalendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+	    cal.set(Calendar.MINUTE, 0);
+	    cal.set(Calendar.SECOND, 0);
+	    cal.set(Calendar.MILLISECOND, 0);
+	    Date sDate = cal.getTime();
 		for (Period p : periods) {
-			if((date.after(p.startDate) || date.equals(p.startDate)) && 
-					(date.before(p.endDate) || date.equals(p.endDate))) {
+			if((sDate.after(p.startDate) || sDate.equals(p.startDate)) && 
+					(sDate.before(p.endDate) || sDate.equals(p.endDate))) {
 				return p;
 			}
 		}

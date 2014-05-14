@@ -1,13 +1,13 @@
 package beans;
 
-import persistence.DataInterface;
-import persistence.PropertiesDataInterface;
+import persistence.Data;
+import persistence.FileData;
 
 public class BaseBean {
-	protected DataInterface data;
+	protected Data data;
 	
 	public BaseBean() {
 		//TODO get real database instance when implemented
-		data = PropertiesDataInterface.getInstance();
+		data = FileData.getInstance();
 	}
 }
