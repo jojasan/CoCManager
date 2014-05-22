@@ -12,9 +12,9 @@
 </h:head>
 <h:body>
 <co:interface>
-	<co:attribute name="value" type="beans.IMember"/>
+	<co:attribute name="value" type="beans.IClan"/>
 	<co:attribute name="modalTitle" required="true"/>
-<!-- 	<co:attribute name="action" required="true" method-signature="String action()"/> -->
+	<co:attribute name="action" required="true" method-signature="String action()"/>
 </co:interface>
 <co:implementation>
 	<div class="modal fade" id="#{cc.id}Container" tabindex="-1" role="dialog" aria-labelledby="#{cc.id}Label" aria-hidden="true">
@@ -38,34 +38,27 @@
 					<h:inputTextarea rows="3" value="#{cc.attrs.value.description}" styleClass="form-control" pt:placeholder="The best clan evah!"/>
 				</div>
 			</div>
-			<t:selectManyCheckbox id="restrictionsCheckboxId" value="#{main.selectedRestrictions}" layout="spread">
-			    <f:selectItems value="#{main.restrictions}" var="restriction" itemValue="#{restriction}" itemLabel=""/>
-			</t:selectManyCheckbox>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Min. Trophies</label>
-				<div class="col-sm-3">
-					<h:inputText value="#{cc.attrs.value.minTrophies}" styleClass="form-control" pt:placeholder="1300" pt:type="number"/>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				  <h3 class="panel-title">Restrictions</h3>
 				</div>
-				<div class="col-sm-2">				
-					<t:checkbox index="0" for="restrictionsCheckboxId"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Min. Level</label>
-				<div class="col-sm-3">
-					<h:inputText value="#{cc.attrs.value.minLevel}" styleClass="form-control" pt:placeholder="60" pt:type="number"/>
-				</div>
-				<div class="col-sm-2">				
-					<t:checkbox index="1" for="restrictionsCheckboxId"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Min. Donations</label>
-				<div class="col-sm-3">
-					<h:inputText value="#{cc.attrs.value.minDonations}" styleClass="form-control" pt:placeholder="500" pt:type="number"/>
-				</div>
-				<div class="col-sm-2">				
-					<t:checkbox index="2" for="restrictionsCheckboxId"/>
+				<div class="panel-body">
+					<t:selectManyCheckbox id="restrictionsCheckboxId" value="#{cc.attrs.value.selectedRestrictions}" layout="spread">
+					    <f:selectItems value="#{main.restrictionTypes}" var="restriction" itemValue="#{restriction.name}" itemLabel=""/>
+					</t:selectManyCheckbox>
+					<ui:repeat var="r" value="#{main.restrictionTypes}" varStatus="status">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">#{r.name}</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+								  <h:inputText value="#{cc.attrs.value.restrictionValues[r.name]}" styleClass="form-control" pt:placeholder="XXX" pt:type="number"/>
+								  <span class="input-group-addon">
+								    <t:checkbox index="#{status.index}" for=":#{cc.id}:#{cc.id}Form:restrictionsCheckboxId"/>
+								  </span>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
 				</div>
 			</div>
 	      </div>

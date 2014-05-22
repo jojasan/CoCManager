@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:co="http://java.sun.com/jsf/composite">
+<h:head>
+<title>(For validation only)</title>
+</h:head>
+<h:body>
+<co:interface>
+</co:interface>
+<co:implementation>
+	<h:outputStylesheet library="css" name="header.css"/>
+	<header class="navbar navbar-default login-nav" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				  <span class="sr-only">Toggle navigation</span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+			    <a class="navbar-brand" href="#">Home</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+				  <li><a href="http://www.supercell.net/games/view/clash-of-clans">Clash of Clans</a></li>
+				  <li><a href="http://clashofclans.wikia.com/wiki/Clash_of_Clans_Wiki">Wiki</a></li>
+				  <li><a href="#">Colaborate</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><div class="navbar-form"><div class="form-group">
+						<h:commandButton styleClass="btn btn-default" value="Login"/>
+					</div></div></li>
+					<li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+					  <ul class="dropdown-menu">
+					    <li><a href="#">Spanish</a></li>
+					    <li><a href="#">English</a></li>
+					    <li><a href="#">French</a></li>
+					  </ul>
+					</li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="header-title background">
+	<div class="container">
+		<div>
+			<h:graphicImage library="images" name="CoC.png" styleClass="coc-image"/>
+			<h1 class="manager-title">Manager</h1>
+			<h:graphicImage library="images" name="Hero-BK.png" styleClass="coc-image-right"/>
+		</div>
+		<p class="lead title-intro">The best Clan management tool out there Chief!</p>
+	</div>
+</div>
+</co:implementation>
+</h:body></html>

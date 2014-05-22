@@ -12,16 +12,16 @@ function checkPeriodChange(data) {
 }
 
 function togglePeriodSelectButtons() {
-	var selectedOp = $("#clanId select.period-select option:selected").val();
-	var lastOp = $("#clanId select.period-select option:last").val();
+	var selectedOp = $("#membersId select.period-select option:selected").val();
+	var lastOp = $("#membersId select.period-select option:last").val();
 	if(selectedOp == 0) {
-		$("#clanId table th input:first").addClass("disabled");
-		$("#clanId table th input:last").removeClass("disabled");
+		$("#membersId table th input:first").addClass("disabled");
+		$("#membersId table th input:last").removeClass("disabled");
 	} else if(selectedOp == lastOp) {
-		$("#clanId table th input:last").addClass("disabled");
-		$("#clanId table th input:first").removeClass("disabled");
+		$("#membersId table th input:last").addClass("disabled");
+		$("#membersId table th input:first").removeClass("disabled");
 	} else {
-		$("#clanId table th input").removeClass("disabled");
+		$("#membersId table th input").removeClass("disabled");
 	}
 	console.log("Buttons toggled");
 };

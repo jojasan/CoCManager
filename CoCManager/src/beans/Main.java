@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 
 import model.Period;
 import model.Rank;
+import model.RestrictionType;
 import persistence.Data;
 import persistence.FileData;
 
@@ -41,20 +42,18 @@ public class Main {
 		return Rank.values();
 	}
 	
-	//TODO build real implementation for restrictions. This is dummy results
-	public String[] getRestrictions() {
-		String[] result = new String[3];
-		result[0] = "MinTrophies";
-		result[1] = "MinLevel";
-		result[2] = "MinDonations";
-		return result;
+	public RestrictionType[] getRestrictionTypes() {
+		return data.getRestrictionTypes();
 	}
 	
-	public String[] getSelectedRestrictions() {
+	public String getRestrictionAttributeName(String rName) {
+		if(rName.equals("Min. Trophies")) {
+			return "minTrophies";
+		} else if(rName.equals("Min. Level")) {
+			return "minLevel";
+		} else if(rName.equals("Min. Donations")) {
+			return "minDonations";
+		}
 		return null;
-	}
-	
-	public void setSelectedRestrictions(String[] selected) {
-		
 	}
 }

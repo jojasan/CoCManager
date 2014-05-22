@@ -79,7 +79,7 @@ public class FileData extends Data {
 		clan.addMember(m3);
 		clan.addMember(m4);
 		clan.addMember(m5);
-		clan.setId(selector);
+		clan.setId(id++);
 		return clan;
 	}
 	
@@ -129,14 +129,20 @@ public class FileData extends Data {
 	public void editMember(Member m, String nName, Integer nTrophies, Date nDate, Integer nLevel, Rank nRank, Integer nDonations, Integer nPeriodId) {
 		// TODO Auto-generated method stub
 		super.editMember(m, nName, nTrophies, nDate, nLevel, nRank, nDonations, nPeriodId);
-		System.out.printf("Member %s has been edited (file)\n", m);
+		System.out.printf("Member <%s> has been edited (file)\n", m);
 	}
 
 	@Override
 	public void deleteMember(Member m) {
 		// TODO Auto-generated method stub
 		super.deleteMember(m);
-		System.out.printf("Member %s has been deleted (file)\n", m);
-		
+		System.out.printf("Member <%s> has been deleted (file)\n", m);
+	}
+	
+	@Override
+	public void createClan(Clan c) {
+		c.setId(id++);
+		super.createClan(c);
+		System.out.printf("Clan <%s> has been created (file)\n", c);
 	}
 }

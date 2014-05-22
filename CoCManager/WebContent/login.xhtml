@@ -17,51 +17,7 @@
 </h:head>
 <h:body>
 <h:form>
-<header class="navbar navbar-default login-nav" role="banner">
-
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			  <span class="sr-only">Toggle navigation</span>
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>
-			</button>
-		    <a class="navbar-brand" href="#">Home</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-			  <li><a href="http://www.supercell.net/games/view/clash-of-clans">Clash of Clans</a></li>
-			  <li><a href="http://clashofclans.wikia.com/wiki/Clash_of_Clans_Wiki">Wiki</a></li>
-			  <li><a href="#">Colaborate</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><div class="navbar-form"><div class="form-group">
-					<h:commandButton styleClass="btn btn-default" value="Login"/>
-				</div></div></li>
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
-				  <ul class="dropdown-menu">
-				    <li><a href="#">Spanish</a></li>
-				    <li><a href="#">English</a></li>
-				    <li><a href="#">French</a></li>
-				  </ul>
-				</li>
-				<li><a href="#">About</a></li>
-			</ul>
-		</div>
-	</div>
-</header>
-<div class="header-title test">
-	<div class="container">
-		<div>
-			<h:graphicImage library="images" name="CoC.png" styleClass="coc-image"/>
-			<h1 class="manager-title">Manager</h1>
-			<h:graphicImage library="images" name="Hero-BK.png" styleClass="coc-image-right"/>
-		</div>
-		<p class="lead title-intro">The best Clan management tool out there Chief!</p>
-	</div>
-</div>
+<utils:pageHeader/>
 <div class="container">
 	<h2 class="page-header">Manage your clan to success!</h2>
 	<p class="lead">Are you tired of using spreadsheets for tracking clan members? Would you like Co-Leaders and Elders to be more engaged on Clan administration duties? Don't worry, we are here to help!</p>
